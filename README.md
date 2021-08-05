@@ -51,5 +51,4 @@ Developer: [@cFahd](https://github.com/cfahd/)
 
 ## License
 
-This project is licensed under the cFahd License - see the LICENSE.md file for details
-
+This project is licensed under cFahd - see the LICENSE file for details

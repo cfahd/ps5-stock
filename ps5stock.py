@@ -1,6 +1,4 @@
-import random
-import requests
-import sys
+import random, requests, sys, time
 from bs4 import BeautifulSoup
 from datetime import datetime
 
@@ -39,17 +37,29 @@ class stockStatus:
                 '.add-to-cart-button', 
                 'Add to Cart',
                 'Cyberpunk 2077 Standard Edition - PlayStation 4, PlayStation 5'],
-
     }
 
     def getCarrier(self, url, selection):
         user_agent = random.choice(self.user_agent_list)
-        headers = {'User-Agent': user_agent}
+        headers = {
+          'authority': 'www.bestbuy.com',
+          'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="90", "Google Chrome";v="90"',
+          'sec-ch-ua-mobile': '?0',
+          'user-agent': f'{user_agent}',
+          'content-type': 'text/plain;charset=UTF-8',
+          'accept': '*/*',
+          'origin': 'https://www.bestbuy.com',
+          'sec-fetch-site': 'same-origin',
+          'sec-fetch-mode': 'cors',
+          'sec-fetch-dest': 'empty',
+          'referer': 'https://www.bestbuy.com',
+          'accept-language': 'en-US,en;q=0.9',
+        }
         r = requests.get(url,headers=headers)
         soup = BeautifulSoup(r.content, 'html.parser')
         return soup.select(selection)
 
-    def runCheck(self):     
+    def runCheck(self, interval):     
         for key in self.STORES:
             myResult = self.getCarrier(self.STORES[key][0],self.STORES[key][1])
             if self.STORES[key][2] in str(myResult):
@@ -58,8 +68,7 @@ class stockStatus:
             else:
                 sys.stdout.write("\033[1;31m")
                 print(f'[{datetime.now()}] :: {key}: {self.STORES[key][3]}')
-        self.runCheck()
+            time.sleep(interval)
+        self.runCheck(interval)
 
-stockStatus().runCheck()
-
-
+stockStatus().runCheck(5)

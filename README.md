@@ -2,7 +2,12 @@
 
 How to Monitor Websites for PS5, Xbox Series X, Sneakers (Using Python) Stock/Drop Notifier App!
 
-![Screenshot](screenshot.png)
+* MacOS Version
+![Screenshot](screenshot_macos.png)
+
+* Windows Version
+
+![Screenshot](screenshot_windows.png)
 
 ## Description
 
@@ -12,7 +17,7 @@ The purpose of this script is to monitor store websites to monitor for product a
 
 ### Dependencies
 
-* Tested on MacOS Big Sur. Windows version will be released soon!
+* Tested on MacOS Big Sur. Windows version released in latest commit change!
 * Python requests & BeautifulSoup4
 
 ### Installing
